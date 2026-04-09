@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: simple-html-container
-        image: linuxhuntnexus/devops-simple-html:latest   # তোমার Docker Hub image নাম
+        image: linuxhuntnexus/devops-simple-html:v1   # তোমার Docker Hub image নাম
         ports:
         - containerPort: 80
 
