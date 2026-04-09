@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-html-deployment
+  labels:
+    app: simple-html
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: simple-html
+  template:
+    metadata:
+      labels:
+        app: simple-html
+    spec:
+      containers:
+      - name: simple-html-container
+        image: linuxhuntnexus/devops-simple-html:latest   # তোমার Docker Hub image নাম
+        ports:
+        - containerPort: 80
+
