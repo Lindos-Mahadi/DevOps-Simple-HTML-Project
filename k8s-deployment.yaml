@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
       - name: simple-html-container
-        image: puremahadi/devops-simple-html   # তোমার Docker Hub image নাম
+        image: puremahadi/devops-simple-html:latest   # তোমার Docker Hub image নাম
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
 
