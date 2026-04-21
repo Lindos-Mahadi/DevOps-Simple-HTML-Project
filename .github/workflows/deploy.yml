@@ -29,7 +29,20 @@ jobs:
           context: .
           push: true
           # এখানে 'my-app' এর জায়গায় আপনার ইমেজের নাম দিন
-          tags: puremahadi/my-app:latest 
+          tags: puremahadi/devops-simple-html:${{ github.sha }}
+
+      # এই স্টেপটি আপনার গিটের YAML ফাইলে নতুন ট্যাগ লিখে দিবে
+      - name: Update Kubernetes resources
+        run: |
+        # sed কমান্ডটি 'image: ...' এর পরের অংশকে নতুন SHA দিয়ে রিপ্লেস করবে
+          sed -i "s|image: puremahadi/devops-simple-html:.*|image: puremahadi/devops-simple-html:${{ github.sha }}|g" deployment.yaml
+        
+        # গিটহাবে এই পরিবর্তনটি সেভ করা  
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add deployment.yaml
+          git commit -m "Update image tag to ${{ github.sha }}"
+          git push
 
       # ৪. (ঐচ্ছিক) সাকসেস মেসেজ
       - name: Image digest
