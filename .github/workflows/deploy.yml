@@ -20,7 +20,7 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
       - name: Build and push
-        id: build_and_push  # এখানে আইডি যোগ করা হয়েছে
+        id: build_and_push
         uses: docker/build-push-action@v5
         with:
           context: .
@@ -29,13 +29,12 @@ jobs:
 
       - name: Update Kubernetes resources
         run: |
-          # sed কমান্ডটি ট্যাগ আপডেট করবে
-          sed -i "s|image: puremahadi/devops-simple-html:.*|image: puremahadi/devops-simple-html:${{ github.sha }}|g" deployment.yaml
+          # আপনার ফাইলের নাম k8s-deployment.yaml অনুযায়ী sed আপডেট করা হয়েছে
+          sed -i "s|image: puremahadi/devops-simple-html:.*|image: puremahadi/devops-simple-html:${{ github.sha }}|g" k8s-deployment.yaml
           
-          # গিট কনফিগারেশন এবং পুশ
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
-          git add deployment.yaml
+          git add k8s-deployment.yaml
           git commit -m "Update image tag to ${{ github.sha }}"
           git push
 
