@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: simple-html-container
-        image: puremahadi/devops-simple-html:e4eab88cbad8cbb4ba64109835a276e4a0e81512
+        image: puremahadi/devops-simple-html:6cc7b74313b67e610f4bdf4b487836b5a2aaf6fb
         imagePullPolicy: Always
         ports:
         - containerPort: 80
